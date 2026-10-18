@@ -8,6 +8,10 @@ plugins {
 group = "dev.gaboron.spwstudio"
 version = providers.gradleProperty("version").get()
 
+repositories {
+    mavenCentral()
+}
+
 java {
     sourceCompatibility = JavaVersion.VERSION_25
     targetCompatibility = JavaVersion.VERSION_25
