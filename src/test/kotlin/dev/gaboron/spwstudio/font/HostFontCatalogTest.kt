@@ -25,7 +25,7 @@ class HostFontCatalogTest {
             }
         }
 
-        assertEquals(listOf("fonts/a.ttf", "fonts/b.otf", "fonts/c.TTC"), HostFontJarIndex.scan(jar).map { it.path })
+        assertEquals(listOf("fonts/a.ttf", "fonts/b.otf", "fonts/c.TTC"), HostFontJarIndex.scanJar(jar).map { it.path })
     }
 
     @Test
@@ -34,7 +34,7 @@ class HostFontCatalogTest {
         Files.writeString(directory.resolve("fonts/a.ttf"), "x")
         Files.writeString(directory.resolve("fonts/readme.txt"), "x")
 
-        assertEquals(listOf("fonts/a.ttf"), HostFontJarIndex.scan(directory).map { it.path.replace('\\', '/') })
+        assertEquals(listOf("fonts/a.ttf"), HostFontJarIndex.scanDirectory(directory).map { it.path.replace('\\', '/') })
     }
 
     @Test

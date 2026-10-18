@@ -33,9 +33,10 @@ class HostFontCatalog {
 
     fun resolve(family: String): Font? = loadedFaces.firstOrNull { it.family.equals(family, ignoreCase = true) }?.font
 
-    fun loadFromJar(jar: Path): List<HostFontFace> = load(HostFontJarIndex.scan(jar), jar.toString())
+    fun loadFromJar(jar: Path): List<HostFontFace> = load(HostFontJarIndex.scanJar(jar), jar.toString())
 
-    fun loadFromDirectory(directory: Path): List<HostFontFace> = load(HostFontJarIndex.scan(directory), directory.toString())
+    fun loadFromDirectory(directory: Path): List<HostFontFace> =
+        load(HostFontJarIndex.scanDirectory(directory), directory.toString())
 
     fun load(entries: List<HostFontEntry>, source: String): List<HostFontFace> {
         val faces = LinkedHashMap<String, HostFontFace>()

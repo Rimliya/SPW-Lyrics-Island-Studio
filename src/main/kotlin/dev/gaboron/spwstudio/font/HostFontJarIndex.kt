@@ -9,7 +9,7 @@ data class HostFontEntry(val path: String, val fileName: String)
 object HostFontJarIndex {
     private val extensions = setOf("ttf", "otf", "ttc")
 
-    fun scan(jar: Path): List<HostFontEntry> {
+    fun scanJar(jar: Path): List<HostFontEntry> {
         if (!Files.isRegularFile(jar)) return emptyList()
         return runCatching {
             ZipFile(jar.toFile()).use { zip ->
@@ -23,7 +23,7 @@ object HostFontJarIndex {
         }.getOrElse { emptyList() }
     }
 
-    fun scan(directory: Path): List<HostFontEntry> {
+    fun scanDirectory(directory: Path): List<HostFontEntry> {
         if (!Files.isDirectory(directory)) return emptyList()
         return runCatching {
             Files.walk(directory).use { paths ->

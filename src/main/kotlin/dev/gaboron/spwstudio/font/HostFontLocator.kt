@@ -16,7 +16,7 @@ object HostFontLocator {
             .split(File.pathSeparatorChar)
             .asSequence()
             .filter { it.endsWith(".jar", ignoreCase = true) }
-            .map(::Path)
+            .map { Path.of(it) }
             .filter { path ->
                 val name = path.fileName.toString().lowercase()
                 hostHints.any(name::contains)
